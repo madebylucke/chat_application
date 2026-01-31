@@ -45,7 +45,7 @@ public class PortalConnection {
     }
 
     public void printMessages() {
-        String query = "SELECT time, sender_name, content, image_url FROM Messages ORDER BY time ASC";
+        String query = "SELECT M.time, M.sender_name, M.content, M.image_url, C.name AS channel_name FROM Messages M JOIN Channels C ON M.channel_id=C.id ORDER BY time ASC";
 
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -55,6 +55,7 @@ public class PortalConnection {
                 String sender = rs.getString("sender_name");
                 String content = rs.getString("content");
                 String image = rs.getString("image_url");
+                String channel = rs.getString("channel_name");
 
                 System.out.println("--------------------------------");
 
@@ -64,7 +65,7 @@ public class PortalConnection {
                     System.out.println("[Image: " + image + "]");
                 }
 
-                System.out.println(sender + " @ " + time);
+                System.out.println("In " + channel + " from " + sender + " @ " + time);
             }
             System.out.println("--------------------------------\n");
 

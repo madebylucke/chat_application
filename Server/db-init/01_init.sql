@@ -8,6 +8,12 @@ CREATE TABLE Channels(
     name TEXT NOT NULL
 );
 
+CREATE TABLE UsersInChannel(
+    username TEXT REFERENCES Users(username) ON DELETE CASCADE,
+    channel INT REFERENCES Channels(id) ON DELETE CASCADE,
+    PRIMARY KEY (username, channel)
+);
+
 CREATE TABLE Messages(
     time TIMESTAMP, /* save time with timzone in mind, convert to UTC */
     sender_name TEXT REFERENCES Users(username) ON DELETE CASCADE,

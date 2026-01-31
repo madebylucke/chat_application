@@ -4,8 +4,13 @@ INSERT INTO Users (username, password) VALUES
     ('user3', 'password3');
 
 INSERT INTO Channels (id, name) VALUES
-    (1,'Channel1'),
-    (2,'Channel2');
+    (1, 'Channel1'),
+    (2, 'Channel2');
+
+INSERT INTO UsersInChannel (username, channel) VALUES
+    ('user1', 1),
+    ('user2', 1),
+    ('user3', 2);
 
 INSERT INTO Messages (time, sender_name, channel_id, content, image_url) VALUES
     (NOW(), 'user1', 1, 'Hello everyone!', NULL),
